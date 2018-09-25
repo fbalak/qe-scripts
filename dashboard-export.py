@@ -9,7 +9,7 @@ data = {key: [] for key in dashboards}
 
 for d in dashboards:
     r = requests.get('{}:3000/api/dashboards/db/{}-dashboard'.format(
-        api_rul, d))
+        api_url, d))
     rows = r.json()["dashboard"]["rows"]
     for row in rows:
         data[d].append({row["title"]:[]})
@@ -20,4 +20,4 @@ for d in dashboards:
             elif "displayName" in panel.keys() and panel["displayName"]:
                 print("{},{},{}".format(d,row["title"],panel["displayName"]))
                 data[d][-1][row["title"]].append(panel["displayName"])
-return data
+print(data)
